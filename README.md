@@ -46,16 +46,6 @@ library(omicsdatapaper)
 run_app()
 ```
 
-<!--html_preserve-->
-
-<div class="muted well" style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;">
-
-Shiny applications not supported in static R Markdown documents
-
-</div>
-
-<!--/html_preserve-->
-
 That’s all\! The package handles all dependencies and imports the
 required
 [jats-skeleton.xml](https://github.com/pensoft/omics-data-paper-shinyapp/blob/master/jats-skeleton.xml).
