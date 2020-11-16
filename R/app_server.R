@@ -5,11 +5,9 @@
 #' @import shiny
 #' @noRd
 app_server <- function( input, output, session ) {
-  # List the first level callModules here
-  #callModule(mod_first_module_server())
-    #  setwd(golem::get_golem_wd())
-  fpath <- system.file("extdata", "skeleton.xml", package="omicsdatapaper")
-  xml = xml2::read_xml(fpath)
+
+  #including the jats-skeleton.xml file in the package does not work (error external pointer is not valid) so I am directly pulling it from github...
+  xml = xml2::read_xml("https://raw.githubusercontent.com/pensoft/omics-data-paper-shinyapp/master/jats-skeleton.xml")
     #xml = get_golem_options("jats-skeleton")
    # xml = xml2::read_xml(paste0(golem::get_golem_wd(),"/jats-skeleton.xml"))
     observeEvent(input$go, {
