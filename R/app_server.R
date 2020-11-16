@@ -6,8 +6,12 @@
 #' @noRd
 app_server <- function( input, output, session ) {
   # List the first level callModules here
-  #  setwd(golem::get_golem_wd())
-    xml = xml2::read_xml(paste0(golem::get_golem_wd(),"/jats-skeleton.xml"))
+  #callModule(mod_first_module_server())
+    #  setwd(golem::get_golem_wd())
+  fpath <- system.file("extdata", "skeleton.xml", package="omicsdatapaper")
+  xml = xml2::read_xml(fpath)
+    #xml = get_golem_options("jats-skeleton")
+   # xml = xml2::read_xml(paste0(golem::get_golem_wd(),"/jats-skeleton.xml"))
     observeEvent(input$go, {
       shinyWidgets::updateProgressBar(
         session = session,
