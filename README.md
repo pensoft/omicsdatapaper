@@ -44,7 +44,6 @@ Paper Generator app locally on your machine. This is how to do it:
 ``` r
 library(omicsdatapaper)
 run_app()
-#> PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
 ```
 
 <!--html_preserve-->
