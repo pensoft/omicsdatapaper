@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.1d2 20140930//EN" "JATS-journalpublishing1.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" article-type="research-article" dtd-version="1.1d2" xml:lang="en">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="publisher"/>
+      <issn/>
+      <publisher>
+        <publisher-name/>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="publisher-id"/>
+      <article-id pub-id-type="doi"/>
+      <article-id pub-id-type="other"/>
+      <article-categories>
+        <subj-group>
+          <subject/>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>HMGA2 blocks local expansion of Polycomb domains and timed repression of neurogenic genes</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname/>
+            <given-names/>
+          </name>
+          <xref ref-type="aff" rid="aff-1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="aff-1"/>
+      <pub-date date-type="pub" publication-format="print" iso-8601-date="">
+        <day/>
+        <month/>
+        <year/>
+      </pub-date>
+      <pub-date date-type="pub" publication-format="electronic" iso-8601-date="">
+        <day/>
+        <month/>
+        <year/>
+      </pub-date>
+      <volume/>
+      <issue/>
+      <fpage/>
+      <lpage/>
+      <history>
+        <date date-type="received" iso-8601-date="">
+          <day/>
+          <month/>
+          <year/>
+        </date>
+        <date date-type="accepted" iso-8601-date="">
+          <day/>
+          <month/>
+          <year/>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement/>
+        <copyright-year/>
+        <copyright-holder/>
+        <license>
+          <license-p/>
+        </license>
+      </permissions>
+      <abstract>
+      <p>During normal development, cells become gradually and irreversibly committed to their specific fate and lose the potential to generate other cell types. Polycomb group proteins (PcG) play a central role in repressing lineage specific genes and limiting differentiation capacity of stem cell during development. Although PcG repress their target genes dynamically during development through Histone H3K27trimethylation (H3K27me3), it is unclear what triggers PcG mediated repression. Here we found that the timed local expansion of H3K27me3 domain into the gene coding regions triggers the timed repression of neurogenic genes at the end of the neurogenic phase. We found that H3K27me3 marks already reside at the upstream intergenic regions even when these genes are expressed. The timed expansion of these H3K27me3 in the late developmental stage is mediated by the release of HMGA proteins, which bind to the border of the H3K27me3 domain in early stages.</p></abstract>
+      <kwd-group>
+      <kwd>Mus musculus</kwd><kwd>Illumina HiSeq 2500</kwd><kwd>Illumina HiSeq 2000</kwd><kwd>RNA-Seq</kwd></kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="Introduction">
+      <title>Introduction</title>
+      <sec sec-type="Value of the dataset">
+        <title>Value of the dataset</title>
+        <sec sec-type="Scientific value">
+          <title>Scientific value</title>
+        </sec>
+        <sec sec-type="Societal value">
+          <title>Societal value</title>
+        </sec>
+      </sec>
+    </sec>
+    <sec sec-type="Methods">
+      <title>Methods</title>
+      <sec sec-type="Sampling">
+        <title>Sampling</title>
+        <list>
+          <list-item>
+            <p>Mus musculus total RNA in 12.5 dpc stage of mouse NPCs (Nestin-d4Venus-positive). sample_name :12.5_dpc_RNAseq [Hiseq2000]; 
+strain :ICR; 
+breed :Outbred; 
+host_body_site :Neocortex; 
+genotype :Tg (Nestin-d4venus); 
+dev_stage :12.5 dpc; 
+
+
+
+</p>
+          </list-item>
+          <list-item>
+            <p>Mus musculus total RNA in 14.5 dpc stage of mouse NPCs (Nestin-d4Venus-positive). sample_name :14.5_dpc_RNAseq [Hiseq2000]; 
+strain :ICR; 
+breed :Outbred; 
+host_body_site :Neocortex; 
+genotype :Tg (Nestin-d4venus); 
+dev_stage :14.5 dpc; 
+
+
+
+</p>
+          </list-item>
+          <list-item>
+            <p>Mus musculus total RNA in 16.5 dpc stage of mouse NPCs (Nestin-d4Venus-positive). sample_name :16.5_dpc_RNAseq [Hiseq2000]; 
+strain :ICR; 
+breed :Outbred; 
+host_body_site :Neocortex; 
+genotype :Tg (Nestin-d4venus); 
+dev_stage :16.5 dpc; 
+
+
+
+</p>
+          </list-item>
+          <list-item>
+            <p>Mus musculus total RNA in 18.5 dpc stage of mouse NPCs (Nestin-d4Venus-positive). sample_name :18.5_dpc_RNAseq [Hiseq2000]; 
+strain :ICR; 
+breed :Outbred; 
+host_body_site :Neocortex; 
+genotype :Tg (Nestin-d4venus); 
+dev_stage :18.5 dpc; 
+
+
+
+</p>
+          </list-item>
+          <list-item>
+            <p>Mus musculus RNA extracted from mouse NPCs (FAC-sorted) in 12.0 dpc stage. sample_name :2732_E12_0 [RNAseq]; 
+strain :ICR; 
+dev_stage :12.0 dpc; 
+genotype :wild type; 
+host_body_site :Neocortex; 
+
+
+
+</p>
+          </list-item>
+          <list-item>
+            <p>Mus musculus RNA extracted from mouse NPCs (FAC-sorted) in 14 dpc stage. sample_name :2732_E14 [RNAseq]; 
+strain :ICR; 
+dev_stage :14 dpc; 
+genotype :wild type; 
+host_body_site :Neocortex; 
+
+
+
+</p>
+          </list-item>
+          <list-item>
+            <p>Mus musculus RNA extracted from mouse NPCs (FAC-sorted) in 16 dpc stage. sample_name :2732_E16 [RNAseq]; 
+strain :ICR; 
+dev_stage :16 dpc; 
+genotype :wild type; 
+host_body_site :Neocortex; 
+
+
+
+</p>
+          </list-item>
+          <list-item>
+            <p>Mus musculus RNA extracted from mouse NPCs (FAC-sorted) in 18 dpc stage. sample_name :2732_E18 [RNAseq]; 
+strain :ICR; 
+dev_stage :18 dpc; 
+genotype :wild type; 
+host_body_site :Neocortex; 
+
+
+
+</p>
+          </list-item>
+        </list>
+        <sec sec-type="Environmental profile">
+          <title>Environmental profile</title>
+        </sec>
+        <sec sec-type="Geographic range">
+          <title>Geographic range</title>
+        </sec>
+        <sec sec-type="Technologies used">
+          <title>Technologies used</title>
+        </sec>
+      </sec>
+      <sec sec-type="Sample processing">
+        <title>Sample processing</title>
+        <sec sec-type="Technologies used">
+          <title>Technologies used</title>
+        </sec>
+      </sec>
+      <sec sec-type="Data processing">
+        <title>Data processing</title>
+        <sec sec-type="Technologies used">
+          <title>Technologies used</title>
+        </sec>
+      </sec>
+    </sec>
+    <sec sec-type="Biodiversity profile">
+      <title>Biodiversity profile</title>
+      <sec sec-type="Target">
+      <title>Target</title><p>RNA-Seq</p></sec>
+      <sec sec-type="Taxonomic range">
+      <title>Taxonomic range</title><list><list-item><p>Mus musculus</p></list-item></list></sec>
+      <sec sec-type="Functional range">
+        <title>Functional range</title>
+      </sec>
+      <sec sec-type="Traits">
+        <title>Traits</title>
+      </sec>
+    </sec>
+    <sec sec-type="Data resources">
+      <title>Data resources</title>
+      <sec sec-type="Resource 1">
+        <title>Resource 1</title>
+        <sec sec-type="Download URL">
+          <title>Download URL</title>
+          <p>
+            <ext-link xlink:type="simple" ext-link-type="uri" xlink:href="ftp.sra.ebi.ac.uk/vol1/fastq/DRR049/DRR049388/DRR049388.fastq.gz">ftp.sra.ebi.ac.uk/vol1/fastq/DRR049/DRR049388/DRR049388.fastq.gz</ext-link>
+          </p>
+        </sec>
+        <sec sec-type="Resource identifier">
+          <title/>
+          <p>DRR049388</p>
+        </sec>
+        <sec sec-type="Data format">
+          <title>Data format</title>
+          <p>FASTQ</p>
+        </sec>
+      </sec>
+      <sec sec-type="Resource 2">
+        <title>Resource 2</title>
+        <sec sec-type="Download URL">
+          <title>Download URL</title>
+          <p>
+            <ext-link xlink:type="simple" ext-link-type="uri" xlink:href="ftp.sra.ebi.ac.uk/vol1/fastq/DRR049/DRR049389/DRR049389.fastq.gz">ftp.sra.ebi.ac.uk/vol1/fastq/DRR049/DRR049389/DRR049389.fastq.gz</ext-link>
+          </p>
+        </sec>
+        <sec sec-type="Resource identifier">
+          <title/>
+          <p>DRR049389</p>
+        </sec>
+        <sec sec-type="Data format">
+          <title>Data format</title>
+          <p>FASTQ</p>
+        </sec>
+      </sec>
+      <sec sec-type="Resource 3">
+        <title>Resource 3</title>
+        <sec sec-type="Download URL">
+          <title>Download URL</title>
+          <p>
+            <ext-link xlink:type="simple" ext-link-type="uri" xlink:href="ftp.sra.ebi.ac.uk/vol1/fastq/DRR049/DRR049390/DRR049390.fastq.gz">ftp.sra.ebi.ac.uk/vol1/fastq/DRR049/DRR049390/DRR049390.fastq.gz</ext-link>
+          </p>
+        </sec>
+        <sec sec-type="Resource identifier">
+          <title/>
+          <p>DRR049390</p>
+        </sec>
+        <sec sec-type="Data format">
+          <title>Data format</title>
+          <p>FASTQ</p>
+        </sec>
+      </sec>
+      <sec sec-type="Resource 4">
+        <title>Resource 4</title>
+        <sec sec-type="Download URL">
+          <title>Download URL</title>
+          <p>
+            <ext-link xlink:type="simple" ext-link-type="uri" xlink:href="ftp.sra.ebi.ac.uk/vol1/fastq/DRR049/DRR049391/DRR049391.fastq.gz">ftp.sra.ebi.ac.uk/vol1/fastq/DRR049/DRR049391/DRR049391.fastq.gz</ext-link>
+          </p>
+        </sec>
+        <sec sec-type="Resource identifier">
+          <title/>
+          <p>DRR049391</p>
+        </sec>
+        <sec sec-type="Data format">
+          <title>Data format</title>
+          <p>FASTQ</p>
+        </sec>
+      </sec>
+      <sec sec-type="Resource 5">
+        <title>Resource 5</title>
+        <sec sec-type="Download URL">
+          <title>Download URL</title>
+          <p>
+            <ext-link xlink:type="simple" ext-link-type="uri" xlink:href="ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147442/DRR147442.fastq.gz">ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147442/DRR147442.fastq.gz</ext-link>
+          </p>
+        </sec>
+        <sec sec-type="Resource identifier">
+          <title/>
+          <p>DRR147442</p>
+        </sec>
+        <sec sec-type="Data format">
+          <title>Data format</title>
+          <p>FASTQ</p>
+        </sec>
+      </sec>
+      <sec sec-type="Resource 6">
+        <title>Resource 6</title>
+        <sec sec-type="Download URL">
+          <title>Download URL</title>
+          <p>
+            <ext-link xlink:type="simple" ext-link-type="uri" xlink:href="ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147443/DRR147443.fastq.gz">ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147443/DRR147443.fastq.gz</ext-link>
+          </p>
+        </sec>
+        <sec sec-type="Resource identifier">
+          <title/>
+          <p>DRR147443</p>
+        </sec>
+        <sec sec-type="Data format">
+          <title>Data format</title>
+          <p>FASTQ</p>
+        </sec>
+      </sec>
+      <sec sec-type="Resource 7">
+        <title>Resource 7</title>
+        <sec sec-type="Download URL">
+          <title>Download URL</title>
+          <p>
+            <ext-link xlink:type="simple" ext-link-type="uri" xlink:href="ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147444/DRR147444.fastq.gz">ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147444/DRR147444.fastq.gz</ext-link>
+          </p>
+        </sec>
+        <sec sec-type="Resource identifier">
+          <title/>
+          <p>DRR147444</p>
+        </sec>
+        <sec sec-type="Data format">
+          <title>Data format</title>
+          <p>FASTQ</p>
+        </sec>
+      </sec>
+      <sec sec-type="Resource 8">
+        <title>Resource 8</title>
+        <sec sec-type="Download URL">
+          <title>Download URL</title>
+          <p>
+            <ext-link xlink:type="simple" ext-link-type="uri" xlink:href="ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147445/DRR147445.fastq.gz">ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147445/DRR147445.fastq.gz</ext-link>
+          </p>
+        </sec>
+        <sec sec-type="Resource identifier">
+          <title/>
+          <p>DRR147445</p>
+        </sec>
+        <sec sec-type="Data format">
+          <title>Data format</title>
+          <p>FASTQ</p>
+        </sec>
+      </sec>
+      <sec sec-type="Resource 9">
+        <title>Resource 9</title>
+        <sec sec-type="Download URL">
+          <title>Download URL</title>
+          <p>
+            <ext-link xlink:type="simple" ext-link-type="uri" xlink:href="ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147446/DRR147446.fastq.gz">ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147446/DRR147446.fastq.gz</ext-link>
+          </p>
+        </sec>
+        <sec sec-type="Resource identifier">
+          <title/>
+          <p>DRR147446</p>
+        </sec>
+        <sec sec-type="Data format">
+          <title>Data format</title>
+          <p>FASTQ</p>
+        </sec>
+      </sec>
+      <sec sec-type="Resource 10">
+        <title>Resource 10</title>
+        <sec sec-type="Download URL">
+          <title>Download URL</title>
+          <p>
+            <ext-link xlink:type="simple" ext-link-type="uri" xlink:href="ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147447/DRR147447.fastq.gz">ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147447/DRR147447.fastq.gz</ext-link>
+          </p>
+        </sec>
+        <sec sec-type="Resource identifier">
+          <title/>
+          <p>DRR147447</p>
+        </sec>
+        <sec sec-type="Data format">
+          <title>Data format</title>
+          <p>FASTQ</p>
+        </sec>
+      </sec>
+      <sec sec-type="Resource 11">
+        <title>Resource 11</title>
+        <sec sec-type="Download URL">
+          <title>Download URL</title>
+          <p>
+            <ext-link xlink:type="simple" ext-link-type="uri" xlink:href="ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147448/DRR147448.fastq.gz">ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147448/DRR147448.fastq.gz</ext-link>
+          </p>
+        </sec>
+        <sec sec-type="Resource identifier">
+          <title/>
+          <p>DRR147448</p>
+        </sec>
+        <sec sec-type="Data format">
+          <title>Data format</title>
+          <p>FASTQ</p>
+        </sec>
+      </sec>
+      <sec sec-type="Resource 12">
+        <title>Resource 12</title>
+        <sec sec-type="Download URL">
+          <title>Download URL</title>
+          <p>
+            <ext-link xlink:type="simple" ext-link-type="uri" xlink:href="ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147449/DRR147449.fastq.gz">ftp.sra.ebi.ac.uk/vol1/fastq/DRR147/DRR147449/DRR147449.fastq.gz</ext-link>
+          </p>
+        </sec>
+        <sec sec-type="Resource identifier">
+          <title/>
+          <p>DRR147449</p>
+        </sec>
+        <sec sec-type="Data format">
+          <title>Data format</title>
+          <p>FASTQ</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec sec-type="Data statistics">
+      <title>Data statistics</title>
+    </sec>
+    <sec sec-type="Caveats and limitations">
+      <title>Caveats and limitations</title>
+    </sec>
+  </body>
+  <back>
+    <ack/>
+    <ref-list/>
+  </back>
+</article>

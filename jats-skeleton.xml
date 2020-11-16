@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.1d2 20140930//EN" "JATS-journalpublishing1.dtd">
+<article
+ article-type="research-article"
+ dtd-version="1.1d2" xml:lang="en"
+ xmlns:mml="http://www.w3.org/1998/Math/MathML"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="publisher"></journal-id>
+      <issn></issn>
+      <publisher>
+        <publisher-name></publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="publisher-id"></article-id>
+      <article-id pub-id-type="doi"></article-id>
+      <article-id pub-id-type="other"></article-id>
+      <article-categories>
+        <subj-group>
+          <subject></subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title></article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname></surname>
+            <given-names></given-names>
+          </name>
+          <xref ref-type="aff" rid="aff-1"/>
+        </contrib>
+      </contrib-group>
+      <aff id="aff-1"></aff>
+      <pub-date date-type="pub" publication-format="print" iso-8601-date="">
+        <day></day>
+        <month></month>
+        <year></year>
+      </pub-date>
+      <pub-date date-type="pub" publication-format="electronic" iso-8601-date="">
+        <day></day>
+        <month></month>
+        <year></year>
+      </pub-date>
+      <volume></volume>
+      <issue></issue>
+      <fpage></fpage>
+      <lpage></lpage>
+      <history>
+        <date date-type="received" iso-8601-date="">
+          <day></day>
+          <month></month>
+          <year></year>
+        </date>
+        <date date-type="accepted" iso-8601-date="">
+          <day></day>
+          <month></month>
+          <year></year>
+        </date>
+      </history>
+      <permissions>
+      <copyright-statement></copyright-statement>
+      <copyright-year></copyright-year>
+      <copyright-holder></copyright-holder>
+      <license>
+        <license-p></license-p>
+      </license>
+      </permissions>
+      <abstract>
+      </abstract>
+      <kwd-group>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec sec-type="Introduction">
+      <title>Introduction</title>
+      <sec sec-type="Value of the dataset">
+        <title>Value of the dataset</title>
+        <sec sec-type="Scientific value">
+          <title>Scientific value</title>
+        </sec>
+        <sec sec-type="Societal value">
+          <title>Societal value</title>
+        </sec>
+      </sec>
+    </sec>
+    <sec sec-type="Methods">
+      <title>Methods</title>
+      <sec sec-type="Sampling">
+        <title>Sampling</title>
+        <sec sec-type="Environmental profile">
+          <title>Environmental profile</title>
+        </sec>
+        <sec sec-type="Geographic range">
+          <title>Geographic range</title>
+        </sec>
+        <sec sec-type="Technologies used">
+          <title>Technologies used</title>
+        </sec>
+      </sec>
+      <sec sec-type="Sample processing">
+        <title>Sample processing</title>
+        <sec sec-type="Technologies used">
+          <title>Technologies used</title>
+        </sec>
+      </sec>
+      <sec sec-type="Data processing">
+        <title>Data processing</title>
+        <sec sec-type="Technologies used">
+          <title>Technologies used</title>
+        </sec>
+      </sec>
+    </sec>
+    <sec sec-type="Biodiversity profile">
+      <title>Biodiversity profile</title>
+      <sec sec-type="Target">
+      </sec>
+      <sec sec-type="Taxonomic range">
+      </sec>
+      <sec sec-type="Functional range">
+        <title>Functional range</title>
+      </sec>
+      <sec sec-type="Traits">
+        <title>Traits</title>
+      </sec>
+    </sec>
+    <sec sec-type="Data resources">
+      <title>Data resources</title>
+    </sec>
+    <sec sec-type="Data statistics">
+      <title>Data statistics</title>
+    </sec>
+    <sec sec-type="Caveats and limitations">
+      <title>Caveats and limitations</title>
+    </sec>
+  </body>
+  <back>
+    <ack></ack>
+    <ref-list></ref-list>
+  </back>
+</article>

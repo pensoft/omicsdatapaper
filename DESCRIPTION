@@ -1,0 +1,28 @@
+Package: omicsdatapaper
+Title: OMICS data paper R shiny app as golem package
+Version: 0.0.0.9000
+Authors@R: person('Mariya', 'Dimitrova', email = 'm.dimitrova@pensoft.net', role = c('cre', 'aut'))
+Description: OMICS data paper R shiny app as golem package
+License: Apache License (>= 2.0)
+Imports: 
+    config,
+    golem,
+    shiny,
+    DT,
+    XML,
+    httr,
+    shinyWidgets,
+    shinyjs,
+    stringr,
+    xml2,
+    processx,
+    htmltools,
+    thinkr
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
