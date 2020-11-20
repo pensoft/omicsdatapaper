@@ -9,15 +9,15 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-This golem is an installable version of the Omics data paper R shiny
+This golem is an installable version of the Omics Data Paper R shiny
 app: <https://mdmtrv.shinyapps.io/Omics_data_paper/>
 
-The Omics Data Paper Generator app, packaged within this golem, emulates
-the functionality of the automatic workflow for streamlined import of
-ENA metadata into manuscript integrated inside Pensoft’s ARPHA Writing
-Tool. You can read more about it in this
+The  Omics Data Paper R Shiny app demonstrates a workflow for automatic import of [ENA](https://www.ebi.ac.uk/ena/browser/home) genomic metadata into an [omics data paper manuscript](https://blog.pensoft.net/tag/omics-data-paper/). Streamlined conversion of metadata into manuscript facilitates authoring of omics data papers, which allow omics dataset creators to receive credit for their work and to improve the description and visibility of their datasets. 
+
+A production-grade version of the workflow has been integrated inside Pensoft's ARPHA Writing Tool.  You can read more about it in this
 [abstract](https://biss.pensoft.net/article/59041/) and
 [blogpost](https://blog.pensoft.net/2020/06/16/streamlined-import-of-omics-metadata-from-the-european-nucleotide-archive-ena-into-an-omics-data-paper-manuscript/).
+
 
 ## Requirements
 
