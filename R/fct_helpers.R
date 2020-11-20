@@ -1,3 +1,9 @@
+#' Process biosamples
+#' @description Function to retrieve BioSamples metadata and create a dataframe from it, also writing a csv file
+#' 
+#' @param input The Biosample id
+#'     DO NOT REMOVE.
+#' @return dataframe with biosamples
 #' @export
 process_biosamples = function(input){
   id= input$id[1] #get the id input by the user and send a request to ENA
@@ -45,8 +51,14 @@ process_biosamples = function(input){
   return(biosamples_df)
 }
 
+
+#' Process ENA Study or Project
+#' @description Function to retrieve ENA metadata and BioSamples and ArrayExpress identifiers, import them into the relevant fields of the data paper template concept and generate HTML visualisation 
+#' @param input The ENA Study or Project id
+#' @param xml The jats skeleton xml
+#'     DO NOT REMOVE.
+#' @return string with html content
 #' @export
-#function to obtain metadata from ENA and ArrayExpress
 process_study = function(input, xml){
   id= input$id[1]
   request = paste0("https://www.ebi.ac.uk/ena/browser/api/xml/", id)
@@ -338,13 +350,19 @@ process_study = function(input, xml){
   display_html = paste(as.character(display), collapse = "\n")
   
   utils::write.table(display_html, 
-              file="omics_data_paper.html", 
-              quote = FALSE,
-              col.names = FALSE,
-              row.names = FALSE)
+                     file="omics_data_paper.html", 
+                     quote = FALSE,
+                     col.names = FALSE,
+                     row.names = FALSE)
   return(display)
 }
 
+#' Parse multiple ids
+#' @description Function to split a string with multiple ids into an array, separators can be - or ,
+#' 
+#' @param id The id
+#'     DO NOT REMOVE.
+#' @return array with ids
 #' @export
 parse_multiple_ids = function(id){
   if (length(id)>0){
@@ -383,6 +401,12 @@ parse_multiple_ids = function(id){
   return(new_ids)
 }
 
+#' Parce consecutive ids
+#' @description Function to split string with consecutive ids into an array (the separator is -)
+#' 
+#' @param input The id
+#'     DO NOT REMOVE.
+#' @return array with ids
 #' @export
 parse_consecutive_ids = function(id){
   #e.g. DRX016751-DRX016758
@@ -401,12 +425,3 @@ parse_consecutive_ids = function(id){
   }
   return(new_ids)
 }
-#' helpers function
-#'
-#' @description A shiny function
-#'
-#' @param Internal parameters for the function.
-#'
-#' @return The return value, if any, from executing the function.
-#'
-#' @export

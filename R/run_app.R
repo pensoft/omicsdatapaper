@@ -12,11 +12,8 @@ run_app <- function(
     app = shinyApp(
       ui = app_ui, 
       server = app_server
-      #options = options,
-      #jats_skeleton = omicsdatapaper::skeleton
     ), 
     golem_opts = list(...)
-   # golem_opts(mydata = mypkg::mydata)
 )
 }
 
