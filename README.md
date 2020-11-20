@@ -14,9 +14,9 @@ app: <https://mdmtrv.shinyapps.io/Omics_data_paper/>
 
 The  Omics Data Paper R Shiny app demonstrates a workflow for automatic import of [ENA](https://www.ebi.ac.uk/ena/browser/home) genomic metadata into an [omics data paper manuscript](https://blog.pensoft.net/tag/omics-data-paper/). Streamlined conversion of metadata into manuscript facilitates authoring of omics data papers, which allow omics dataset creators to receive credit for their work and to improve the description and visibility of their datasets. 
 
-A production-grade version of the workflow has been integrated inside Pensoft's ARPHA Writing Tool.  You can read more about it in this
+A production-grade version of the workflow has been integrated inside Pensoft's [ARPHA Writing Tool (AWT)](https://arpha.pensoft.net/).  You can read more about it in this
 [abstract](https://biss.pensoft.net/article/59041/) and
-[blogpost](https://blog.pensoft.net/2020/06/16/streamlined-import-of-omics-metadata-from-the-european-nucleotide-archive-ena-into-an-omics-data-paper-manuscript/).
+[blogpost](https://blog.pensoft.net/2020/06/16/streamlined-import-of-omics-metadata-from-the-european-nucleotide-archive-ena-into-an-omics-data-paper-manuscript/) or head over to the [AWT](https://arpha.pensoft.net/) to create a manuscript.
 
 
 ## Requirements
