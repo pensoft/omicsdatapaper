@@ -1,0 +1,103 @@
+
+/* New Styles Start*/
+.cke_toolbar_break {
+	clear:none !important;
+}
+
+.cke_top {
+	border:0px none !important;
+	box-shadow:none !important;
+	background:none !important;
+	padding-left:0px !important;
+	background-image:none !important;
+	filter:none !important;
+}
+
+.cke_1, .cke {
+	border:0px none !important;
+	box-shadow:none !important;
+}
+
+.cke_contents {
+	border:1px solid #E2E2DC !important;
+ 	padding-top: 0px!important; 
+}
+.cke_button, a.cke_off, .cke_button_undo, .cke_button_redo, .cke_button a {
+	min-width: auto !important;
+}
+.cke_contents iframe.cke_wysiwyg_frame {
+	border:0px none !important;
+	width: 100% !important;
+}
+
+.cke_bottom {
+	display:none !important;
+}
+
+/*
+#add-figure-popup .cke_contents {
+	height:80px !important;
+}*/
+
+.cke_button__fig_label, .cke_button__tbls_label, .cke_button__refs_label, .cke_button__supfiles_label {
+	display:block !important;
+}
+
+.cke_button__fig .cke_button_icon, .cke_button__tbls .cke_button_icon, .cke_button__refs .cke_button_icon{
+	height:18px !important;
+	width:21px !important;
+}
+
+.cke_reset_all, .cke_reset_all * {
+	white-space: inherit !important;
+}
+
+/* Dialog classes fixes START */
+.cke_dialog_footer_buttons a.cke_dialog_ui_button span {
+	font-weight:normal !important;
+}
+
+.cke_dialog_footer {
+	text-align:left !important;
+}
+
+.P-Dialog-Button-InsertSelected span {
+	text-shadow: none !important;
+}
+
+a.cke_button {
+    height: 18px !important;
+}
+
+a.cke_dialog_ui_button {
+	padding:0px !important;
+	border:0px none !important;
+}
+
+.document_references_holder {
+	/*height: auto !important;*/
+	overflow: auto;
+}
+
+cke_dialog_page_contents > table {
+	float:left !important;
+}
+
+.P-PopUp-Data-Table-Row {
+	height:174px !important;
+}
+
+.document_references_holder .P-PopUp-Data-Table-Row {
+	height:auto !important;
+}
+
+.cke_inner {
+	background:none !important;
+}
+.P-Matrials-Field-Editor-Holder .cke_toolbar,
+.P-Comment-Edit-Form-Wrapper .cke_toolbar{
+	background:#f2f2f2 !important;
+}
+/* Dialog classes fixes END */
+
+/* New Styles End*/

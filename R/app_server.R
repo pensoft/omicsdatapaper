@@ -5,11 +5,13 @@
 #' @import shiny
 #' @noRd
 app_server <- function( input, output, session ) {
-
+  md_out <- rmarkdown::render("vignettes/document-structure.Rmd")
   #including the jats-skeleton.xml file in the package does not work (error external pointer is not valid) so I am directly pulling it from github...
   xml = xml2::read_xml("https://raw.githubusercontent.com/pensoft/omics-data-paper-shinyapp/master/jats-skeleton.xml")
-    #xml = get_golem_options("jats-skeleton")
-   # xml = xml2::read_xml(paste0(golem::get_golem_wd(),"/jats-skeleton.xml"))
+  #if the help button is clicked, a browser window with the rendered html file opens  
+  observeEvent(input$help, {
+      browseURL("vignettes/document-structure.html")
+    })
     observeEvent(input$go, {
       shinyWidgets::updateProgressBar(
         session = session,
@@ -72,4 +74,5 @@ app_server <- function( input, output, session ) {
         xml2::write_html(xml2::read_html("omics_data_paper.html"), file)
       }
     )
+    
 }

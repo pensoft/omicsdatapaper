@@ -1,0 +1,246 @@
+var gFigureObjectId = 221;
+var gFigureImageType = 1;
+var gFigurePlateType = 2;
+var gFigureVideoType = 3;
+var gChangeFigureTypeActionId = 119;
+var gChangePlateTypeActionId = 121;
+var gCreatePlateDetailsActionId = 122;
+var gDeletePlateDetailsActionId = 123;
+var gPlateTypeFieldId = 485;
+function AddFigureImage(pParentInstanceId) {
+    CreateImagePopup(pParentInstanceId, gFigureImageType);
+}
+
+function AddFigurePlate(pParentInstanceId) {
+    CreateImagePopup(pParentInstanceId, gFigurePlateType);
+}
+
+function AddFigureMovie(pParentInstanceId) {
+    CreateImagePopup(pParentInstanceId, gFigureVideoType);
+}
+function reorderFiguresByCitations() {
+    var ids = new Array();
+    $($('#previewIframe').contents()).find('cite[data-citation-type="figure"]').each(function () {
+        $(this).children('xref').each(function (k, v) {
+            if ($(v).attr('parentfig') === undefined) {
+                if ($(v).attr('rid') && ids.indexOf($(v).attr('rid')) < 0) {
+                    ids.push($(v).attr('rid'));
+                }
+            } else {
+                //
+            }
+        });
+
+    });
+    ReorderFigures(ids);
+}
+function ReorderFiguresByTxt() {
+    var err = false;
+    
+    var ids = getDocFigures();
+    
+    var order = $('#reorder-txt').val().split(',');
+    var new_order_ids = new Array();
+    
+    $(order).each(function(k, v){
+        var key = parseInt(v) - 1;
+        var val = parseInt(ids[key]);
+        
+        if(key < 0 || !val) {
+            err = true;
+            alert('Error: Invalid or not existing figure number!');
+            return false;
+        }
+        if($.inArray( val, new_order_ids ) > -1) {
+            err = true;
+            alert('Error: Duplicated figure numbers!');
+            return false;
+        }
+        new_order_ids.push(val);
+    });
+    
+    if(!err) {
+        ReorderFigures(new_order_ids);
+    }
+}
+
+function showReorderFrm() {
+    $('#reorder-txt-frm').toggleClass('P-Hidden');
+}
+
+function CreateImagePopup(pParentInstanceId, pFigureType) {
+    var lAdditionalData = {
+        'figure_type': pFigureType
+    };
+    CreatePopup(pParentInstanceId, gFigureObjectId, lAdditionalData);
+}
+
+function ChangeFigureType(pFigureInstanceId, pFigureType) {
+    executeAction(gChangeFigureTypeActionId, pFigureInstanceId, pFigureType);
+}
+
+function ChangeFigureMenuActiveTab(pFigureType) {
+    var lActiveMenuClass = 'P-Active';
+    $('#popUp_nav li').removeClass(lActiveMenuClass);
+    $('#popUp_nav li[figure_type="' + pFigureType + '"]').addClass(lActiveMenuClass);
+}
+
+//function ChangePlateType(pPlateInstanceId, pPlateType){
+//	executeAction(gChangePlateTypeActionId, pPlateInstanceId, pPlateType);
+//}
+
+function InitPlateTypeOnchangeEvents(pInstanceId, pPlateName) {
+//	$('form[name="' + gActiveInstanceFormName +  '"] input[name="' + pPlateName + '"]').bind('change', function(){
+//			ChangePlateType(pInstanceId, $(this).val());
+//	});
+}
+
+function CreatePlateDetails(pPlateInstanceId) {
+    var lPlateType = $('form[name="' + gActiveInstanceFormName + '"] input[name="' + pPlateInstanceId + gInstanceFieldNameSeparator + gPlateTypeFieldId + '"]:checked').val();
+    if (!lPlateType) {
+        alert('You have to select plate type first!');
+        return;
+    }
+    executeAction(gCreatePlateDetailsActionId, pPlateInstanceId, lPlateType);
+}
+
+function DeletePlateDetails(pPlateInstanceId) {
+    if (!confirm('Are you sure you want to delete the current plate details?')) {
+        return;
+    }
+    executeAction(gDeletePlateDetailsActionId, pPlateInstanceId);
+}
+
+function uploadFigureImageFromUrl(pDocId, pInstanceId, pFieldId, pIsPlate) {
+    var lImageUrl = $('#image_url_' + pInstanceId).val();
+    if (lImageUrl == '') {
+        alert('Empty image url');
+        return;
+    }
+    showLoading();
+    $.ajax({
+        url: '/lib/ajax_srv/figure_file_upload_srv.php',
+        async: true,
+        dataType: 'json',
+        data: {
+            document_id: pDocId,
+            image_url: lImageUrl,
+        },
+        type: 'POST',
+        success: function (pAjaxResult) {
+            UploadPhotoAjaxCallback(pIsPlate, pInstanceId, pFieldId, pAjaxResult);
+        }
+    });
+}
+
+function HideImageUrlUploadForm(pInstanceId, pFieldId) {
+	$('#image-url-upload-form_' + pInstanceId + '_' + pFieldId).hide();
+	$('#image-url-upload-form_show_btn_' + pInstanceId + '_' + pFieldId).show();
+    $('#image_url_' + pInstanceId).val('');
+}
+
+function ToggleImageUrlUploadForm(pInstanceId, pFieldId) {
+	$('#image-url-upload-form_' + pInstanceId + '_' + pFieldId).toggle();
+	$('#image-url-upload-form_show_btn_' + pInstanceId + '_' + pFieldId).toggle();
+    $('#image_url_' + pInstanceId).val('');
+}
+
+function UploadPhotoAjaxCallback(pIsPlate, pInstanceId, pFieldId, pResponse) {
+    hideLoading();
+    if (pResponse != 0 && !pResponse['err_cnt']) {
+        $('#field_' + pInstanceId + '__' + pFieldId).val(pResponse['file_id']);
+        UpdateInstanceFieldValue(pInstanceId, pFieldId, pResponse['file_id'], 1);
+        if (!pIsPlate) {
+            var dims = jQuery.parseJSON(pResponse['img_dims']); // get picture dimensions and resize container
+            $('.P-Plate-Part').width(dims[0] + 20);
+            $('.P-Plate-Part-WithPic').width(dims[0] + 20);
+            $('.P-Plate-Part').height(dims[1] + 20);
+            $('.P-Plate-Part-WithPic').height(dims[1] + 20);
+            $('.P-Add-Plate-Holder').width(dims[0]);
+            $('.P-Add-Plate-Holder').height(dims[1]);
+            $("#uploaded_photo").attr("src", "/showfigure.php?filename=" + pResponse['html'] + ".jpg");
+            $('#figures_image_holder').closest('.P-Plate-Part').removeClass('P-Plate-Part').addClass('P-Plate-Part-WithPic');
+            $('#figures_image_holder').html('<img id="uploaded_photo" src="/showfigure.php?filename=' + pResponse['html'] + '.jpg"></img>');
+            $("#uploaded_photo").attr("src", "/showfigure.php?filename=" + pResponse['html'] + ".jpg&" + Math.random()); // za da se refreshne snimkata
+            if (pResponse['pic_id']) { //update pic holder
+                $('#P-Figures-Row-' + pResponse['pic_id'] + ' .P-Picture-Holder').html('<img src="/showfigure.php?filename=c90x82y_' + pResponse['pic_id'] + '.jpg&' + Math.random() + '"></img>');
+            }
+        } else {
+            var lUpdateHolder = $('#figures_image_plate_holder_' + pInstanceId + '_' + pFieldId);
+            lUpdateHolder.closest('.P-Plate-Part').removeClass('P-Plate-Part').addClass('P-Plate-Part-WithPic');
+            lUpdateHolder.html('<img  id="uploaded_photo_' + pResponse['pic_id'] + '" src="/showfigure.php?filename=' + pResponse['plate_pic'] + '.jpg"></img>');
+            $("#uploaded_photo_" + pResponse['pic_id']).attr("src", "/showfigure.php?filename=" + pResponse['plate_pic'] + ".jpg&" + Math.random()); // za da se refreshne snimkata
+        }
+        HideImageUrlUploadForm(pInstanceId, pFieldId);
+    } else {
+        if (pResponse['err_msg']) {
+            alert(pResponse['err_msg']);
+        } else {
+            alert(LANG['js.error_uploading_file']);
+        }
+    }
+}
+
+function UploadFigureImageFile(pBtnId, pDocId, pInstanceId, pFieldId, pIsPlate) {
+    var btnUpload = $('#' + pBtnId);
+    var AjaxFileUpload = new AjaxUpload(btnUpload, {
+        action: '/lib/ajax_srv/figure_file_upload_srv.php',
+        responseType: 'json',
+        name: 'uploadfile',
+        hoverClass: 'UploadHover',
+        data: {
+            document_id: pDocId,
+        },
+        onSubmit: function (file, ext) {
+            showLoading();
+            if (!(ext && /^(jpg|png|jpeg|gif)$/i.test(ext))) {
+                hideLoading();
+                $('#' + pUpdateHolder).text('Only JPG, PNG and GIF files are allowed');
+                return false;
+            }
+        },
+        onComplete: function (file, pResponse) {
+            UploadPhotoAjaxCallback(pIsPlate, pInstanceId, pFieldId, pResponse);
+        }
+    });
+}
+
+function ReorderFigures(childIds) {
+    $.ajax({
+        url: '/lib/ajax_srv/reorder_figures_srv.php',
+        async: true,
+        dataType: 'json',
+        data: {
+            id: gDocumentId,
+            child_ids: (childIds) ? childIds : $('input[name="instance_in_viewmode_ids[]"]').map(function () {
+                return $(this).val();
+            }).get()
+        },
+        type: 'POST',
+        error: function(xhr, status, error) {
+            alert(xhr.responseText);
+        },
+        success: function (pAjaxResult) {
+            Backbone.Radio.channel('content').trigger('figures:reload');
+            Backbone.Radio.channel('popup').trigger('current:popup:reload');
+        },
+        complete: function () {
+
+        }
+    });
+}
+
+function getDocFigures() {
+    var ret = null;
+    $.ajax({
+        url: '/lib/ajax_srv/doc_figures_srv.php?id=' + gDocumentId,
+        async: false,
+        dataType: 'json',
+        type: 'GET',
+        success: function (pAjaxResult) {
+            ret = pAjaxResult;
+        }
+    });
+    
+    return ret;
+}

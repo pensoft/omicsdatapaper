@@ -1,0 +1,139 @@
+.docEditHeader-holder{
+    background-color: #f2f2f2;    
+    color: #333333;
+    height: 32px;
+    margin: 0 auto;
+	padding: 6px 15px;
+    max-width: 76em;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+.box_separator{
+	border-left: 1px solid #e2e2dc;
+}
+.box.clearBorder.mid{
+	margin: 0 10px 0 0;
+}
+.optionHolder img{
+	position: relative;
+	top: 3px;	
+}
+#docEditHeader .box,
+#P-Article-StructureHead-Changes .box{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;	
+}
+
+#docEditHeader .box h3{
+    margin-bottom: 6px;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #1F1F1F;
+    margin-left: 10px;
+}
+#docEditHeader .box h3 img{
+    margin-left: 50px;
+}
+#P-Article-StructureHead-Changes .box .optionHolder {
+	margin: 0 6px;
+}
+#docEditHeader .box .optionHolder{    
+    margin: 0 8px;
+}
+#docEditHeader .buttons{
+    float: right;
+    margin-right: 10px;
+    width: 320px;
+}
+#docEditHeader .filter a{
+    color: #0052CC!important;
+}
+#P-Article-StructureHead-Changes .box a,
+#docEditHeader .box a{
+    font-size: 12px;
+    color: #727272;
+    text-decoration:none;
+}
+#docEditHeader .box .arrow{
+    float: right;
+    margin: 0 0px 0 25px;
+}
+#docEditHeader .box .arrow img{
+    float: left;
+}
+#docEditHeader .box .arrow span{
+    float: left;
+    min-width: 70px;
+    text-align: left;
+    padding-left: 10px;
+    display: inline-block;
+}
+#P-Article-StructureHead-Changes .box .optionHolder span,
+#docEditHeader .box .optionHolder span {       
+    margin-right: 6px;
+	margin-left: 3px;
+}
+#docEditHeader .box .optionHolder span:last-child {
+	margin-left: 6px;
+	margin-right: 3px;
+}
+
+#docEditHeader .box .optionHolder div{
+    margin-top: 5px;
+}
+#docEditHeader .box .filterInput{
+    height: 20px;
+    margin-top: 5px;
+}
+#docEditHeader .box .filterInput img{
+    float: right;
+    margin: 5px 0 0 10px;
+    width: 13px;
+    height: 8px;
+}
+#docEditHeader .box .block{
+    display: inline-block;
+    height: 17px;
+    /* width: 5px;
+    margin: 0 5px; */
+}
+#docEditHeader .box .popup{
+    background: #ffffff;
+    border: 1px solid #C5C5B5;
+    position: absolute;
+    border-radius: 5px;
+    padding: 0 10px;
+    display: none;
+    text-align: left;
+    z-index: 1;
+}
+#docEditHeader .box .popup a{
+    padding: 5px 10px 10px 10px;
+    border-top: 1px solid #e2e2dc;
+    display: block;
+    margin-top: -5px;
+}
+#docEditHeader .legend {
+    /* border-left: 1px solid #e2e2dc; */
+    float: left;
+    font-size: 11px;
+    height: 29px;
+    margin: 0;
+    padding: 0;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	max-width: 280px;
+}
+/*
+#docEditHeader .box .P-Grey-Btn-Holder, .P-Green-Btn-Holder{
+        margin: 32px 0 0 16px;
+}
+*/
+
+.P-Disabled-Btn{
+    opacity: .5;
+    filter: alpha(opacity=50);
+}

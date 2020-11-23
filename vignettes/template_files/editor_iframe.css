@@ -1,0 +1,59 @@
+html,body {
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	line-height: 22px;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+
+p {
+	padding: 6px;
+	margin: 0px;
+}
+
+reference-citation, sup-files-citation, fig-citation, tbls-citation, endnote-citation, cite{
+	/*background:#DDD;*/
+	background-color:#ccf0f0;
+	/*-webkit-user-modify: read-only;*/
+	-moz-user-modify: read-only;
+	padding: 0 2px;
+	border-radius: 2px;
+}
+
+cite{
+	font-style: normal;
+}
+[data-deleted="true"] {
+	background: #ea6060;
+	color: white;
+	padding: 0 2px;
+	margin: 0 -2px;
+}
+
+.ins {
+	background: #DDFFBE;
+	color: #000000;
+}
+
+.ins.P-Active-Change{
+	background: #8dcb54;
+}
+
+.del {
+	border-bottom: none;
+}
+
+.del {
+	background: #FFE8E8;
+	color: #BC0000;
+}
+
+.del.P-Active-Change{
+	background: #eaafaf;
+}
+
+.P-Endnotes-Citation-Holder xref:not([data-deleted="true"]) {
+	position: relative; 
+	top: -0.5em; 
+	font-size: 80%;
+}

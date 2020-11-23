@@ -1,0 +1,389 @@
+a.cke_button {
+	padding: 3px 4px !important;
+}
+
+#editorToolbarSpacer .cke_inner {
+	/*background: #FFEDE0 !important;*/
+	background: #f2f2f2 !important;
+}
+#editorToolbarSpacer .cke_top {
+	margin-left: 25px !important;
+	margin-right: 25px !important;
+	padding: 7px 0px 0px !important;
+}
+.cke_toolgroup {
+	margin-right: 2px !important;
+}
+a.cke_button_off:hover, a.cke_button_off:focus, a.cke_button_off:active {
+	/*border: none !important;*/
+}
+.P-Dialog-Button-AddNewReference span,
+.P-Dialog-Button-AddNewFigure span {
+	background-image: url(/i/icons/plus.svg);
+	background-color: #00b2b2;
+	background-position: 10px;
+	background-repeat: no-repeat;
+	padding: 10px 16px 10px 30px !important;
+	font-size: 14px!important;
+	display: inline-block;
+	color: #fff !important;
+}
+.P-Dialog-Button-Insert-Selected-References span,
+.P-Dialog-Button-InsertSelected span {
+	background: #00b2b2;
+	border: none!important;
+	cursor: pointer!important;
+	margin: 0px!important;
+	padding: 10px 16px !important;
+	font-size: 14px!important;
+	color: #FFF!important;
+	display: inline-block;
+}
+.P-Dialog-Button-AddNewFigure span:hover,
+.P-Dialog-Button-InsertSelected span:hover,
+.P-Dialog-Button-Close span:hover,
+.P-Dialog-Button-AddNewReference span:hover {
+	opacity: 0.8;
+}
+.P-Figure-InsertOnly-Checkbox {
+	float: left!important;
+	color: #727272!important;
+    font-size: 12px!important;
+	font-family: Tahoma;
+	margin-right: 5px!important;
+}
+
+.P-Figure-InsertOnly-Checkbox div{
+	float: left!important;
+	margin-top: 0px;
+	color: #727272!important;
+    font-size: 12px!important;
+	margin-right: 2px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.P-Figure-InsertOnly-Checkbox div {
+		margin-top: 2px;
+	}
+}
+
+.P-Control-Textarea-Holder td.cke_contents {
+	height: 100px!important;
+	padding-top: 0px!important;
+}
+
+.P-Control-Textarea-Holder-Table td.cke_contents {
+	height: 270px!important;
+	padding-top: 0px!important;
+}
+/*
+.P-Control-Textarea-Holder td.cke_top {
+	background: url("/i/control_background.png") repeat-x!important;
+	height: 23px!important;
+}
+*/
+
+.P-PopUp-Menu-Holder ul {
+	/* border-bottom: 1px solid #ccccbe!important; */
+	margin-left: 10px!important;
+	margin-right: 10px!important;
+	color: #006CD8!important;
+	font-size: 14px!important;
+	height: 39px!important;
+}
+
+
+.P-Tabbed-Element-Holder ul {
+	border-bottom: 1px solid #ccccbe!important;
+	padding-left: 10px!important;
+	padding-right: 10px!important;
+	color: #006CD8!important;
+	font-size: 14px!important;
+	height: 39px!important;
+	margin-bottom:20px!important;
+}
+
+.P-PopUp-Menu-Holder ul li, .P-Tabbed-Element-Holder ul li {
+	cursor: pointer!important;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	float: left;
+}
+
+.P-PopUp-Menu-Holder ul li.P-Active, .P-Tabbed-Element-Holder ul li.P-Active {
+	
+	color: #000!important;
+}
+
+.P-PopUp-Menu-Elem-Left {
+	width: 5px!important;
+	height: 37px!important;
+	float: left!important;
+}
+
+.P-PopUp-Menu-Elem-Middle {
+	height: 37px!important;
+	line-height: 40px!important;
+	padding: 0px 10px 0px 10px!important;
+	float: left!important;
+}
+
+.P-PopUp-Menu-Elem-Right {
+	width: 5px!important;
+	height: 37px!important;
+	float: left!important;
+}
+
+.P-Active .P-PopUp-Menu-Elem-Left {
+	background: #ccc;
+}
+
+.P-Active .P-PopUp-Menu-Elem-Middle {
+	background: #ccc;
+}
+
+.P-Active .P-PopUp-Menu-Elem-Right {
+	background: #ccc;
+}
+
+.P-PopUp-Content-Inner, .P-PopUp-Content-Inner-Tables, .P-PopUp-Content-Inner-Email {
+        /*min-height: 500px;*/
+	margin: 10px 15px 15px 15px;
+}
+
+
+.P-Reference-Mode-Menu-Holder ul li .P-PopUp-Menu-Elem-Middle{
+	color: #006CD8!important;
+	cursor: pointer!important;
+}
+
+.P-Reference-Mode-Menu-Holder ul li.P-Active .P-PopUp-Menu-Elem-Middle{
+	color: #333!important;
+}
+
+/* New Styles Start*/
+.cke_toolbar_break {
+	clear:none !important;
+}
+
+.cke_top {
+	border:0px none !important;
+	box-shadow:none !important;
+	background:none !important;
+	padding-left:0px !important;
+	background-image:none !important;
+	filter:none !important;
+}
+
+.cke_1, .cke {
+	border:0px none !important;
+	box-shadow:none !important;
+}
+
+div#previewHolder ~ div.cke_1, div#previewHolder ~ div.cke {	
+/* 	-moz-box-shadow:0 0 2px rgba(0,0,0,.5) !important; */
+/* 	-webkit-box-shadow:0 0 2px rgba(0,0,0,.5) !important; */
+/* 	box-shadow:0 0 2px rgba(0,0,0,.5) !important; */
+	margin-left:0px;
+}
+
+div#previewHolder ~ div.cke_1 .cke_inner, div#previewHolder ~ div.cke .cke_inner{
+	display: block;
+	-webkit-touch-callout: none;
+	background: #FFEDE0 !important;
+	padding: 0px 0px 0px 7px !important;
+}
+
+.cke_contents {
+	border: 1px solid lightgrey !important;
+        border-radius: 1px;
+}
+
+.P-Reference-Field-Editor-Holder .cke_contents, .P-Matrials-Field-Editor-Holder .cke_contents{
+ 	border:1px solid #E2E2DC !important;
+}
+
+.cke_wysiwyg_frame {
+	border:0px none !important;
+}
+
+.cke_bottom {
+	display:none !important;
+}
+
+/*
+#add-figure-popup .cke_contents {
+	height:80px !important;
+}*/
+
+.cke_button__fig_label, .cke_button__tbls_label, .cke_button__refs_label, .cke_button__supfiles_label, .cke_button__endnotes_label {
+	display:block !important;
+}
+
+.cke_button__fig .cke_button_icon, .cke_button__tbls .cke_button_icon, .cke_button__refs .cke_button_icon{
+	height:18px !important;
+	width:21px !important;
+}
+
+.cke_reset_all, .cke_reset_all * {
+	white-space: inherit !important;
+}
+
+/* Dialog classes fixes START */
+.cke_dialog_footer_buttons a.cke_dialog_ui_button span {
+	font-weight:normal !important;
+}
+
+.cke_dialog_footer {
+	text-align:left !important;
+}
+a.cke_dialog_ui_button {
+	padding:0px !important;
+	border:0px none !important;
+	/*border: 1px solid #bcbcbc;*/
+}
+
+
+a.cke_dialog_ui_button.P-Dialog-Button-Close {
+	margin-left: -3px!important;
+}
+
+a.cke_dialog_ui_button.P-Dialog-Button-Close span {
+	background-color: #ccc;
+	background-repeat: no-repeat;
+	padding: 10px 16px !important;
+	font-size: 14px!important;
+	display: inline-block;
+	color: #fff !important;
+}
+
+.document_references_holder,
+.document_figures_holder,
+.document_tables_holder,
+.document_sup_files_holder,
+.document_endnotes_holder {
+	/*height: auto !important;*/
+	overflow: auto;
+}
+
+cke_dialog_page_contents > table {
+	float:left !important;
+}
+
+.P-PopUp-Data-Table-Row {
+	/*height:174px !important;*/
+}
+
+.P-PopUp-Data-Table-Row-Figs {
+	margin-bottom: 25px !important;
+	/*height:174px !important;*/
+}
+
+.document_references_holder .P-PopUp-Data-Table-Row {
+	height:auto !important;
+}
+
+/* Dialog classes fixes END */
+
+/* New Styles End*/
+
+.P-Reference-Field-Editor-Holder.P-Editor-With-Focus .cke_contents, .P-Matrials-Field-Editor-Holder.P-Editor-With-Focus .cke_contents{
+	border-radius: 5px;	
+	border-color: #89c0e8!important;
+	box-shadow: 0 0 3px 3px #d5dee5;	
+}
+
+.P-Reference-Field-Editor-Holder.P-Editor-With-Focus .cke_contents iframe, .P-Matrials-Field-Editor-Holder.P-Editor-With-Focus .cke_contents iframe{
+	background-color: #fefbf3;
+}
+
+.P-Reference-Field-Editor-Holder .cke_top, .P-Matrials-Field-Editor-Holder .cke_top{	
+}
+
+.fieldWithError .cke_contents{
+	border-color:#bf1e1e!important;
+}
+
+.fieldWithError .cke_contents iframe{
+	background:#f6e3dc!important;
+}
+.cke_toolgroup {
+	margin-bottom: 4px !important;
+}
+a.cke_button {
+	border: 1px solid transparent !important;
+}
+a.cke_button_on {
+	/*border: 1px #bcbcbc solid !important;*/
+	background: #bdbdbd !important;
+}
+a.cke_button_disabled .cke_button_label {
+	opacity: .3;
+}
+.P-Reference-Field-Editor-Holder .cke_toolbar {
+	border: 1px solid #d1d1d1 !important;
+	border-radius: 3px;
+}
+.P-Reference-Field-Editor-Holder .cke_top {
+	background: white !important;
+	padding-top: 0px !important;
+}
+#popup-wrapper .cke_top {
+	/*border: 1px solid #d1d1d1 !important;*/
+/*	border-radius: 3px;
+	padding-top: 2px;
+	margin-bottom: 5px;*/
+}
+.previewIframeWithUnprocessedChanges .cke_button_label {
+	display: none !important;
+}
+a.cke_dialog_ui_button_ok:hover {
+	background: #00b2b2;
+	opacity: 0.8;
+}
+a.cke_dialog_ui_button {
+	padding: 4px 1px !important;
+}
+a.cke_dialog_ui_button_ok {
+	background: #00b2b2 !important;
+}
+.cke_button_label{
+	padding-left: 1px !important;
+}
+.document_figures_holder table, 
+.document_tables_holder table, 
+.document_references_holder table, 
+.document_sup_files_holder table, 
+.document_endnotes_holder table {
+    float: left;
+    width: 100% !important;
+}
+.cke_dialog_title {
+	background: #00b2b2 !important;
+	color: #fff !important;
+}
+@media screen and (min-width: 1px) and (max-width: 875px) {
+	a.cke_button {
+		padding: 3px 3px !important;
+	}
+}
+@media screen and (min-width: 1px) and (max-width: 840px) {
+	.cke_button_label {
+		display:none !important;
+	}
+}
+@media screen and (min-width: 1px) and (max-width: 700px) {
+	.cke_toolbar_separator {
+		margin: 4px 0px 0 0px !important;
+	}
+}
+@media screen and (min-width: 680px) and (max-width: 700px) {
+	a.cke_button {
+		padding: 3px 4px !important;
+	}
+}	
+
+.document_references_holder ul li {
+    list-style: none;
+}

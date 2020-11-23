@@ -1,0 +1,12 @@
+---
+title: "Document structure"
+output: html_document
+---
+
+Here is an explanation of each section and subsection of the template.
+
+```{r echo=FALSE}
+template = read.csv("template_details.csv", header = TRUE)
+colnames(template) = c("Article section", "Purpose")
+knitr::kable(template, "simple", align="lr")
+```

@@ -1,0 +1,308 @@
+
+function refAutocompleteSource( request, response ) {
+	var soFar = 0;
+	var refs = [];
+	var loading = $("#refAutocompleteLoading");
+	loading.show();
+
+	if (typeof old_request !== "undefined"){
+		old_request.abort()
+	}
+	old_request = $.ajax({
+		xhr: function() {
+			var xhr = new window.XMLHttpRequest();
+			xhr.addEventListener("progress", function (oEvent){
+				var responseText = oEvent.currentTarget.responseText;
+				var current = responseText.substring(soFar);
+				if(current !== "") {
+					var t = current.replace(/\]\[/g, ",");
+					try {
+						var j = JSON.parse(t);
+						refs = refs.concat(j);
+						response(refs);
+						soFar = responseText.length;
+					}
+					catch(e){
+						p(e);
+						p(e.message);
+					}
+				}
+
+			}, false);
+			return xhr;
+		},
+		url : "http://api.refindit.org/find",
+		dataType : "text",
+		data :{
+			search: "simple",
+			pwt: 1,
+			text: request.term.trim(),
+			limit: 4,
+			db: [
+				'crossref',
+				'pubmed',
+				'refbank',
+				'agris',
+				'datacite',
+				'gnub'],
+		},
+
+		success : function(pAjaxResult){
+			if (refs.length === 0) {
+				response(JSON.parse(pAjaxResult));
+			}
+			loading.hide();
+		},
+		error: function() {
+			//loading.hide();
+		}
+	});
+}
+function refAutocompleteSelect( event, ui ) {
+	$(".P-PopUp-Title").removeClass("ref-tab").html("Add new reference");
+	old_request.abort();
+	createPWTrefFromRefinditJSON(ui.item);
+	return false;
+}
+function refAutocompleteOpen() {
+	$(".ui-autocomplete").width(874);
+}
+
+function parseRef() {
+	var refs = $.trim($('#ref2Parse').val());
+	if(!refs) {
+		alert('Parse plain text field is empty.');
+		return false;
+	}
+	$.ajax({
+//		url: 'http://biblio.globalnames.org/parser.json',
+//		url: 'http://api.refindit.org/gnbp',
+		url: '/lib/ajax_srv/references_srv.php',
+		dataType: 'json',
+		type: 'POST',
+		data: {
+			action: 'parse_reference_from_text',
+			refStr: refs,
+			doc_id: GetDocumentId(),
+		},
+		beforeSend: function() {
+            showLoading();
+        },
+		success: function(pAjaxResult){
+//			console.log(pAjaxResult);
+//			return false;
+			if(pAjaxResult['err_cnt']) {
+				alert(pAjaxResult['err_msg']);
+			} else {//show reference in popup
+				window.setTimeout(function () {
+					$('#newElementPopupContent').html(pAjaxResult['html']);
+					$('#referenceSaveBtn').show();
+					//hide the type dropdown
+					var form = $('#newElementPopupContent form');
+					form.children('.horizontalContainer').remove();
+					form.children('.P-VSpace-10').remove();
+				}, 10);
+			}
+		},
+		complete: function() {
+            hideLoading();
+        }
+	});
+}
+
+function parseAuthors(authorsArray, func) {
+	if (Array.isArray(authorsArray)) {
+		return authorsArray.map(func);
+	}
+	p("Warning: Authors is not an array");
+	return [];
+}
+
+function csl2refinder(ref) {
+	var refTypes = {
+		book:		'book',
+		bookitem:	'book chapter',
+		'chapter':	'book chapter',
+		conference: 'conference paper',
+		proceeding: 'conference proceedings',
+		article:	'journal article',
+		'article-journal': 'journal article',
+		'journal-article': 'journal article',
+	};
+	var pages = /([0-9]{1,}) *-+ *([0-9]{1,})/.exec(ref.page);
+
+	return {
+		authors:		parseAuthors(ref.author, function (au) {return [au.given, au.family]; }),
+		doi:			ref.DOI,
+		href:			ref.URL,
+		title:			ref.title,
+		year:			ref.issued["date-parts"][0][0],
+		publishedIn:	ref["container-title"],
+		volume:			ref.volume,
+		issue:			ref.issue,
+		spage:			pages ? pages[1] : ref.page,
+		epage:			pages ? pages[2] : undefined,
+		firstauthor:	undefined,
+		editors:		ref.editor,
+		fullCitation:	ref.formatted,
+		isParsed:		true,
+		type:			refTypes[(ref.type || "").toLowerCase()],
+	};
+}
+
+var gImportRefData;
+function refinder_uploaded(files) {
+	var data = new FormData();
+	$.each(files, function(key, value) {
+		data.append(key, value);
+	});
+
+	$.ajax({
+		url: 'http://api.refindit.org/import',
+		type: 'POST',
+		data: data,
+		cache: false,
+		dataType: 'json',
+		processData: false, // Don't process the files
+		contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+		success: function(data, textStatus, jqXHR) {
+			if(typeof data.error === 'undefined') {
+				gImportRefData = data;
+				var what = '<div style="position: fixed; width: 860px; background-color: white; padding: 20px; border-bottom: 1px solid #ccc; z-index: 5; margin:-10px">'
+							+'<a onclick="refMassSelect()">Select all</a> | '
+							+'<a onclick="refMassUnSelect()">Un-select all</a> | '
+							+'<a onclick="refMassInvert()">Invert selection</a>' +
+						   '</div>'
+						   + '<div id="progressbar"></div>'
+							+ '<div id="importRefRowHolder">';
+				data.forEach(function(item, index) {
+					var authors = (item.authors || []).map(function(a){
+						return ((a[1] || "") + " " + ((a[0] || "")[0] || "")).trim(); }
+					).reduce(function(a, b){
+						return a + (a ? ", " : "") + b;
+					}, "");
+					var year = item.year ? " (" + item.year + ")" : "";
+					var fullref = (authors + year + " " + $("<span >" + item.title + "</span>").text() + ". " + (item.publishedIn || "")).trim();
+					var unsupported = '';
+					
+					what += '<div  class="importRefRow '+ unsupported +'">'
+								+ '<label for="ref' + index + unsupported +'">'
+									+ '<input type="checkbox" onchange="toogleImportButton()" id="ref'+index+'">'
+									+ '<div class="short author" title="' + fullref + '">' + (( (item.firstauthor[1] || item.firstauthor[0]) || "&nbsp;") + ((item.authors.length > 1) ? " et al." : "")) + "</div>"
+									+ '<div class="short year"   title="' + fullref + '">' + (item.year				|| "&nbsp;") + "</div>"
+									+ '<div class="short title"  title="' + fullref + '">' + (item.title			|| "&nbsp;") + "</div>"
+								+ '</label></div>';
+				});
+				what += '</div>';
+				$('.P-PopUp-Title').html('Import reference(s)').removeClass('ref-tab');
+				$('#newElementPopupContent').html(what).css({'margin-top': '2px'});
+				$('#ImportSelectedRefs').show();
+			}
+			else {
+
+				console.log('data ERRORS: ' + data.error);
+			}
+		},
+		error: function(jqXHR, textStatus, errorThrown)	{
+			alert('Please read the instruction on how to export your data from Zotero, EndNote or RefManager');
+			console.log('general ERRORS: ' + textStatus);
+		}
+	});
+}
+
+function toogleImportButton(){
+	$("#ImportSelectedRefs").attr('disabled', ($(".importRefRow:not(.unsupported) input:checked").length < 1));
+}
+
+function refMassUnSelect(){
+	$(".importRefRow:not(.unsupported) input:checked").prop('checked', false);
+	toogleImportButton();
+}
+
+function refMassSelect(){
+	$(".importRefRow:not(.unsupported) input").prop('checked', true);
+	toogleImportButton();
+}
+
+function refMassInvert(){
+	$(".importRefRow:not(.unsupported) input").each( function() {
+        $(this).prop('checked', !$(this).prop('checked'));
+    });
+	toogleImportButton();
+}
+
+function refMassImport(){
+	$("#importRefRowHolder").hide();
+	$("#ImportSelectedRefs").attr('disabled', true);
+	var selected = $(".importRefRow input:checked");
+	var acc = [];
+	selected.each(function(index, Element){
+		var id = Element.id.replace('ref', '');
+		acc = acc.concat(gImportRefData[id]);
+	});
+	var soFar = 0;
+	$.ajax({
+		xhr: function() {
+			var xhr = new window.XMLHttpRequest();
+			xhr.addEventListener("progress", function (oEvent){
+				var responseText = oEvent.currentTarget.responseText;
+				var current = responseText.substring(soFar);
+				if(current !== "") {
+					var refN = parseInt(current, 10);
+					$( "#progressbar" ).progressbar( "option", "value", refN);
+					soFar = responseText.length;
+				}
+
+			}, false);
+			return xhr;
+		},
+		type: "POST",
+		url: '/lib/ajax_srv/references_srv.php',
+		data: {
+			refStr: JSON.stringify(acc),
+			doc_id: GetDocumentId(),
+			refs_id: getReferenceParentInstanceId(),
+		},
+
+		success: function() {
+			CancelNewReferencePopup();
+			ChangeInstanceMode(GetDocumentId(), getReferenceParentInstanceId(), null, null, gInstanceEditMode);
+			try{
+				var actionsChannel = window.parent.Backbone.Radio.channel('actions');
+				actionsChannel.trigger('instance:updated', getReferenceParentInstanceId());
+			}catch(e){
+				
+			}
+		}
+	});
+	$( "#progressbar" ).progressbar({
+	  max: $(".importRefRow:not(.unsupported) input:checked").length,
+	  value: 0
+	});
+}
+
+function createPWTrefFromRefinditJSON(ref) {
+	// determine type
+	var types = {
+		'book': 1,
+		'book chapter': 2,
+		'journal article': 3,
+		'conference paper': 4,
+		'conference proceedings': 5,
+		'thesis': 6,
+		'software' : 7,
+	};
+//	showLoading();
+	window.setTimeout(function(){
+		gIsActionAsync = true;
+		executeAction(139, 1, GetDocumentId(), JSON.stringify(ref), null, true);	
+		//hide the type dropdown
+		var form = $('#newElementPopupContent form');
+		form.children('.horizontalContainer').remove();
+		form.children('.P-VSpace-10').remove();
+//		hideLoading();
+	},10);
+	
+
+	
+}

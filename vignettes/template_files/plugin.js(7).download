@@ -1,0 +1,140 @@
+CKEDITOR.dtd['xref'] = {
+	span : 1
+}; // List of tag names it can contain.
+CKEDITOR.dtd.$inline['xref'] = 1; // Choose $block or $inline.
+CKEDITOR.dtd.body['xref'] = 1;
+var citationTags = [ 'fig-citation', 'reference-citation', 'tbls-citation','sup-files-citation', 'endnote-citation', 'cite'];
+for ( var i = 0; i < citationTags.length; ++i) {
+	var curTag = citationTags[i];	
+	CKEDITOR.dtd[curTag] = {
+		xref : 1
+	}; // List of tag names it can contain.
+	CKEDITOR.dtd.$inline[curTag] = 1; // Choose $block or $inline.
+	CKEDITOR.dtd.body[curTag] = 1;
+	var copiedTag = 'copied-' + curTag;
+	CKEDITOR.dtd[copiedTag] = {
+			xref : 1
+		}; // List of tag names it can contain.
+		CKEDITOR.dtd.$inline[copiedTag] = 1; // Choose $block or $inline.
+		CKEDITOR.dtd.body[copiedTag] = 1;
+}
+
+if(typeof gAcceptedInsertChangeNodeName == 'undefined'){
+	gAcceptedInsertChangeNodeName = 'accepted-insert';
+}
+if(typeof gAcceptedDeleteChangeNodeName == 'undefined'){
+	gAcceptedDeleteChangeNodeName = 'accepted-delete';
+}
+if(typeof gDeleteChangeNodeName == 'undefined'){
+	gDeleteChangeNodeName = 'delete';
+}
+if(typeof gInsertChangeNodeName == 'undefined'){
+	gInsertChangeNodeName = 'insert';
+}
+
+var nodesToRemoveRegExp = new RegExp("<\/?(mark|" + [gAcceptedInsertChangeNodeName, gAcceptedDeleteChangeNodeName, gDeleteChangeNodeName, gInsertChangeNodeName].join('|') + ")(\\s[^>]*)?>", "g");
+var classesToRemoveRegExp = new RegExp("([\\s\"])(" + gCommentPreviewElementClass + "|" + gActiveCommentTextClass + "|" + gActiveChangeClass + ")(?=[\\s\"])", "g");
+var citationNodesRegExp = new RegExp("(<\/?)(" + citationTags.join('|') + ")(\\s[^>]*)?>", "g");
+
+var addNewCitationToInstanceCitationsCache = function(instanceId, fieldId, newCitation){
+	var citationType = newCitation['citation_type'];
+	var citationId = newCitation['data-citation-id'];
+	var currentWindow = window;
+	while(currentWindow !== currentWindow.parent){
+		currentWindow = currentWindow.parent;
+	}
+	if(currentWindow.gInstanceCitations && currentWindow.gInstanceCitations[instanceId]){
+		if(!currentWindow.gInstanceCitations[instanceId][fieldId]){
+			currentWindow.gInstanceCitations[instanceId][fieldId] = {};
+		}
+		if(!currentWindow.gInstanceCitations[instanceId][fieldId][citationType]){
+			currentWindow.gInstanceCitations[instanceId][fieldId][citationType] = {};
+		}
+		currentWindow.gInstanceCitations[instanceId][fieldId][citationType][citationId] = newCitation;			
+	}	
+}
+
+var processCopiedCitation = function(idx, node){
+	var prevCitationId = $(node).attr('data-citation-id');
+	var result = {};
+	if(prevCitationId && !this.trackChanges){
+		$.ajax({
+			url : gCitationsSrv,
+			dataType : 'json',
+			async : false,
+			data :{
+				'instance_id' : this.m_instanceId,
+				'field_id' : this.m_fieldId,
+				'data-citation-id' : prevCitationId,
+				'action' : 'copy_citation',
+				'document_id' : gDocumentId,
+			},
+			success : function(pAjaxResult){
+				result = pAjaxResult;
+			}
+		});
+	}
+	if(!result['data-citation-id'] || !result['citation_node_name'] || !result['data-citation-id'] > 0 || result['err_cnt']){
+		$(node).replaceWith($(node).textContent);
+		return;
+	}
+	addNewCitationToInstanceCitationsCache(this.m_instanceId, this.m_fieldId, result);	
+	
+	result['citation_class'] = '';
+	result['data-type-citation'] = '';
+	switch(result['citation_type']){
+		case 1: result['citation_class'] = 'P-Figure-Citation-Holder'; result['data-type-citation'] = 'figure'; break;
+		case 2: result['citation_class'] = 'P-Tables-Citation-Holder'; result['data-type-citation'] = 'tables'; break;
+		case 3: result['citation_class'] = 'P-References-Citation-Holder'; result['data-type-citation'] = 'reference'; break;
+		case 4: result['citation_class'] = 'P-SupFiles-Citation-Holder'; result['data-type-citation'] = 'supfiles'; break;
+		case 5: result['citation_class'] = 'P-Endnotes-Citation-Holder'; result['data-type-citation'] = 'endnotes'; break;
+	}
+
+	var newNode = '<' + result['citation_node_name'] + ' data-citation-id="' + result['data-citation-id'] + '" data-citation-type="'+result['data-type-citation']+'" class="'+result['citation_class']+'">';
+	newNode += result['preview'];
+	newNode += '</' + result['citation_node_name'] + '>';
+	$(node).replaceWith(newNode);
+};
+
+CKEDITOR.plugins.add('paste_custom', {
+
+	init : function(editor) {
+		editor.on('paste', function(evt) {
+			// Update the text
+			var htmlValue = evt.data.dataValue;
+			htmlValue = htmlValue.replace(nodesToRemoveRegExp, '');
+			htmlValue = htmlValue.replace(classesToRemoveRegExp, "$1");
+			htmlValue = htmlValue.replace(citationNodesRegExp, "$1copied-$2$3>");
+			evt.data.dataValue = htmlValue;
+//			console.log(evt.data.dataValue);
+		}, editor.element.$);
+		editor.on('afterPaste', function(evt) {
+			// Update the text
+//			console.log('Paste after', evt);
+			var copiedSelector = 'copied-' + citationTags.join(',copied-');
+			var copiedElements = [];
+			if(editor.elementMode == CKEDITOR.ELEMENT_MODE_INLINE){
+				copiedElements = $(editor.element.$).find(copiedSelector);
+			}else{
+				var iframe = $(editor.container.$).find('iframe');
+				copiedElements = iframe.contents().find(copiedSelector);
+			}
+			// debugger;
+			copiedElements.each(processCopiedCitation.bind(editor));
+			if(copiedElements.length){
+				autoSaveInstance();
+			}			
+			if(editor && editor.elementMode == CKEDITOR.ELEMENT_MODE_REPLACE ) {
+				editor.updateElement();
+			}
+		}, editor.element.$);
+		
+		//Ensure that the floatingspace is shown/hidden correctly
+		$(editor.element.$).bind('blur', function(){
+			//editor.fire('blur');
+		});
+		$(editor.element.$).bind('focus', function(){
+			//editor.fire('focus');
+		});
+	}
+});
