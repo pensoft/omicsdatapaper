@@ -33,11 +33,12 @@ app_ui <- function(request) {
                
       ),
       fluidRow(class="bodyRow", 
-               column(12, "The generated genomics data paper follows a predefined structure, defined by our omics data paper template. "),
+               column(12, h5("The generated genomics data paper follows a predefined template. We suggest reading about it to better understand the rationale behind the omics data paper structure."))
                ),
-      fluidRow(class="bodyRow",
-               column(6,
-                      actionButton("help", "Paper structure"))),
+      fluidRow(class="bodyRow", 
+               column(4,
+                      actionButton("help", "Read more"))
+               ),
       fluidRow(class="bodyRow",
                column(4,
                       textInput(inputId = "id", label = "Enter ENA Study accession number", value =  "PRJDB2900", width = 600),
@@ -71,6 +72,7 @@ app_ui <- function(request) {
     )
   )
 }
+
 
 #' Add external Resources to the Application
 #' 
