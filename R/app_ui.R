@@ -19,8 +19,8 @@ app_ui <- function(request) {
       tags$head(tags$style(HTML("a:hover {color: #F5D1DA}"))),
 
       fluidRow(class="headerRow",
-               h1("Omics Data Paper Generator", style="margin-left: 15px"),
-               h4("The application demonstrates the automatic import of ENA metadata into Omics Data Paper manuscript, implemented as a workflow in Pensoft's", a(href="https://arpha.pensoft.net/", "ARPHA Writing Tool"),". The code behind this R shiny app is ", a(href="https://github.com/pensoft/omics-data-paper-shinyapp", "available on GitHub"), "under Apache 2.0 license and can be used and modified by anyone with the right attribution.",
+               h1("Genomic Data Paper Generator", style="margin-left: 15px"),
+               h4("The application demonstrates the automatic import of ENA metadata into genomics data paper manuscript, implemented as a workflow in Pensoft's", a(href="https://arpha.pensoft.net/", "ARPHA Writing Tool"),". The code behind this R shiny app is ", a(href="https://github.com/pensoft/omics-data-paper-shinyapp", "available on GitHub"), "under Apache 2.0 license and can be used and modified by anyone with the right attribution.",
                   style="margin-left: 15px; margin-right:40px; text-align: justify;"),
                h4("You can read more about the project in ", a(href="https://blog.pensoft.net/2020/06/16/streamlined-import-of-omics-metadata-from-the-european-nucleotide-archive-ena-into-an-omics-data-paper-manuscript/", "this blogpost."),
                   style="margin-left: 15px; margin-right:40px; text-align: justify;"),
@@ -33,12 +33,18 @@ app_ui <- function(request) {
                
       ),
       fluidRow(class="bodyRow", 
+               column(12, h4("Omics data paper structure"))
+      ),
+      fluidRow(class="bodyRow", 
                column(12, h5("The generated genomics data paper follows a predefined template. We suggest reading about it to better understand the rationale behind the omics data paper structure."))
                ),
       fluidRow(class="bodyRow", 
                column(4,
                       actionButton("help", "Read more"))
                ),
+      fluidRow(class="bodyRow", 
+               column(12, h4("Import genomic metadata into manuscript"))
+      ),
       fluidRow(class="bodyRow",
                column(4,
                       textInput(inputId = "id", label = "Enter ENA Study accession number", value =  "PRJDB2900", width = 600),
