@@ -33,7 +33,7 @@ You can install the latest version of omicsdatapaper from
 [github](https://github.com/) with:
 
 ``` r
-devtools::install_github("mdmtrv/omicsdatapaper")
+devtools::install_github("pensoft/omicsdatapaper")
 ```
 
 ## Use
